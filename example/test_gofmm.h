@@ -1,105 +1,101 @@
+#include <fstream>
 #include <iostream>
-#include <fstream>  // Use ifstream
-#include <vector>
 #include <string>
-
+#include <vector>
 
 /* Use a binary tree */
 #define N_CHILDREN 2
 
-
-/* Define different spd matrix types */
+namespace {
 typedef float T;
-typedef SPDMatrix<T> SPDMATRIX_DENSE;
-typedef Data<T> DATA_s;
+typedef SPDMatrix<float> SPDMATRIX_DENSE;
+typedef Data<float> DATA_s;
 typedef gofmm::CommandLineHelper CommandLineHelper;
+
+DATA_s loaded_matrix;
+SPDMATRIX_DENSE spdmatrix;
 
 /* Create infrastructure for storing matrix in a tree */
 /** Use the geometric-oblivious splitter from the metric ball tree. */
-typedef gofmm::centersplit<SPDMATRIX_DENSE, N_CHILDREN, T> SPLITTER;
+typedef gofmm::centersplit<SPDMatrix<float>, N_CHILDREN, T> SPLITTER;
+
 /** Use the geometric-oblivious splitter from the randomized tree. */
-typedef gofmm::randomsplit<SPDMATRIX_DENSE, N_CHILDREN, T> RKDTSPLITTER;
+typedef gofmm::randomsplit<SPDMatrix<float>, N_CHILDREN, T> RKDTSPLITTER;
+
 /** Create configuration for all user-define arguments. */
 typedef gofmm::Configuration<T> CONFIGURATION;
+
 /** (Optional) provide neighbors, leave uninitialized otherwise. */
 typedef Data<pair<T, size_t>> DATA_PAIR;
 
+} // namespace
 
-class gofmmTree {
-  /* This data structure gofmmTree enables storage of configuration
-   parameters needed to execute mainly the following two operations:
-   1. Mat-vec multiplication
-   2. SPD Inverse 
-  */
- private:
-  SPDMATRIX_DENSE K;  // SPD Matrix
-  std::vector<const char*> argv;  // holder for configuration parameters
+/**
+ * @brief This data structure gofmmTree enables storage of configuration
+ * parameters needed to execute mainly the following two operations:
+ * 1. Mat-vec multiplication
+ * 2. SPD Inverse
+ */
+class GofmmTree {
+private:
+  SPDMATRIX_DENSE K_;
+  std::vector<const char *> argv;
 
   /* Configuration parameters */
-  std::string executable;  // ./test_gofmm
-  int n;  // problem size
-  int m;  // maximum leaf node size
-  int k;  // number of neighbors
-  int s;  // maximum off-diagonal ranks
-  int nrhs;  // number of right hand sides
-  T stol;  // user tolerance
-  T budget;  // user computation budget [0,1]
-  std::string distance;  // distance type (geometry, kernel, angle)
-  // spdmatrix type (testsuit, dense, ooc, kernel, userdefine)
-  std::string matrixtype;
-  std::string kerneltype;  // kernelmatrix type (gaussian, laplace)
+  std::string executable_;
+  int problem_size_;
+  int max_leaf_node_size_;
+  int num_of_neighbors_;
+  int max_off_diagonal_ranks_;
+  int num_rhs_;
+  T user_tolerance_;
+  T computation_budget_;
+  std::string distance_type_; //  geometry, kernel, angle
+  std::string matrix_type_;   // testsuit, dense, ooc, kernel, userdefine
+  std::string kernel_type_;   // gaussian, laplace
 
- public:
-  /* Constructors and destructors*/
-  gofmmTree();  // default constructor
+public:
+  GofmmTree();
+  GofmmTree(std::string executable, int problem_size, int max_leaf_node_size,
+            int num_of_neighbors, int max_off_diagonal_ranks, int num_rhs,
+            T user_tolerance, T computation_budget, std::string distance_type,
+            std::string matrix_type, std::string kernel_type,
+            SPDMATRIX_DENSE K);
 
-  // User-defined constructor: fill the inputs into the object fields above
-  gofmmTree(std::string executableName, int n0, int m0, int k0, int s0,
-            int nrhs0, T stol0, T budget0, std::string distanceName,
-            std::string matrixtypeName, std::string kerneltypeName,
-            SPDMATRIX_DENSE K0);
+  void ConvertToVector();
+  void MultiplyDenseSpdMatrix(DATA_s data, double *product_matrix,
+                              int len_mul_numpy);
+  void InverseOfDenseSpdMatrix(T lambda, double *inverse_matrix,
+                               int matrix_length);
+}; // GofmmTree
 
-  // Convert all initialized configuration parameters to a vector (argv)
-  void convert_to_vector();
+/**
+ *  @brief A container to store argvs in vector and use destructor to
+ * automatically free the memory.
+ */
+class FileToArgv {
+private:
+  std::vector<const char *> argv;
 
-  /* Operations: mul + inverse */
-  void mul_denseSPD(DATA_s w, double* mul_numpy, int len_mul_numpy);
-  void invert_denseSPD(T lambda, double* inv_numpy, int len_inv_numpy);
-};
+public:
+  FileToArgv();
+  explicit FileToArgv(const char *filename);
+  ~FileToArgv();
 
+  void PrintArgv();
+  std::vector<const char *> ReturnArgv();
+}; // FileToArgv
 
-class file_to_argv {
-  /* A container to store argvs in vector and use destructor to automatically
-     free the memory
-  */
- private:
-  std::vector<const char*> argv;  // store the parameters
+hmlpError_t CallLaunchHelper(const char *filename);
 
- public:
-  /* constructors and destructors */
-  file_to_argv();  // default constructor
-  explicit file_to_argv(const char* filename);  // single parameter
-  ~file_to_argv();
+hmlpError_t CallLaunchHelper(SPDMatrix<float> &K, const char *filename);
 
-  /* Public methods*/
-  void print_argv();  // print out parameters line by line
-  std::vector<const char*> return_argv();  // return argv (deep copy)
-};
+SPDMATRIX_DENSE LoadDenseSpdMatrix(uint64_t height, uint64_t width,
+                                   std::string const &filename);
 
-hmlpError_t call_Launchhelper(const char* filename);
+SPDMATRIX_DENSE& LoadDenseSpdMatrixFromConsole(float *numpy_matrix,
+                                               int num_of_rows,
+                                               int num_of_cols);
 
-hmlpError_t launchhelper_denseSPD(SPDMATRIX_DENSE &K, const char* filename);
-
-SPDMATRIX_DENSE load_denseSPD(uint64_t height,
-                              uint64_t width,
-                              const std::string &filename);
-
-int hello_world();
-
-SPDMATRIX_DENSE load_denseSPD_from_console(float* numpyArr,
-                                           int row_numpyArr,
-                                           int col_numpyArr);
-
-DATA_s load_matrix_from_console(float* numpyMat,
-                                int row_numpyMat,
-                                int col_numpyMat);
+DATA_s& LoadNumpyMatrixFromConsole(float *numpy_matrix, int num_of_rows,
+                                   int num_of_cols);

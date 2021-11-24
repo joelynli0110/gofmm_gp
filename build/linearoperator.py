@@ -6,8 +6,8 @@ from scipy.linalg import eig, eigh
 from scipy.sparse.linalg import LinearOperator
 
 # NOTE: make sure "path/to/datafold" is in sys.path or PYTHONPATH if not ,!installed
-#import datafold.dynfold as dfold
-#import datafold.pcfold as pfold
+import datafold.dynfold as dfold
+import datafold.pcfold as pfold
 #from datafold.utils.plot import plot_pairwise_eigenvector
 
 random_state = 1
@@ -48,14 +48,14 @@ class FullMatrix(LinearOperator):
 
     def _matvec(self, x):
         # TODO perform matvec with gofmm
-        print(np.array(x.reshape(spdSize,1)).shape)
+        #print(np.array(x.reshape(spdSize,1)).shape)     #
         print("adfadsfadsf")
         print(spdSize * nrhs)
-        xx=np.vstack([x for i in range (nrhs)])
-        print(xx.shape)
-        print(self.shape)
-        print(xx.reshape(spdSize,nrhs).shape)
-        a= tools.load_matrix_from_console(np.float32(xx.reshape(spdSize,nrhs)))
+        #xx=np.vstack([x for i in range (nrhs)])        # should not work
+        #print(xx.shape)
+        #print(self.shape)
+        print(xx.reshape(spdSize,nrhs).shape)          #
+        a= tools.load_matrix_from_console(np.float32(xx.reshape(spdSize,nrhs)))    # call with x, comment all prints
         print("test")
         # print(x)
         dir(a)
@@ -72,7 +72,8 @@ class FullMatrix(LinearOperator):
 K = np.ones((n_pts,n_pts),dtype=np.float32) #dmap.kernel_matrix_
 # print(type(K))
 # print(K)
-#K = K.todense()
+K_sparse = K.copy()
+#K = K.todense() # np.array(k.todense()) 
 # print(type(K))
 # print(K)
 K = K.astype("float32")
@@ -104,8 +105,11 @@ solver_kwargs = {
     "which": "LM",
     "v0": np.ones(n_pts),
     "tol": 1e-14,
+    "ncv" : nrhs
 }
-evals_all, evecs_all = eigh(K)
+#evals_all, evecs_all = eigh(K) 
+
+evals_all, evecs_all = scipy.sparse.linalg.eigsh(K_sparse, **solver_kwargs) 
 print(evals_all[-n_eigenpairs:])
 # assumed output:
 # [0.35179151 0.36637801 0.48593941 0.50677673 0.74200987]

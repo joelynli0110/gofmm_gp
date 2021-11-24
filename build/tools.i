@@ -27,7 +27,7 @@
       {(float* numpyArr, int row_numpyArr, int col_numpyArr)}
 
 // load_matrix_from_console
-%apply (float* IN_ARRAY2, int DIM1, int DIM2 ) \  // IN_ARRAY2: Input 2D
+%apply (float* INPLACE_ARRAY2, int DIM1, int DIM2 ) \  // IN_ARRAY2: Input 2D
       {(float* numpyMat, int row_numpyMat, int col_numpyMat)}
 
 // mul_numpy is actually a 2D array flattened row-wise into a 1D array
@@ -41,7 +41,6 @@
 // is not available in numpy.i
 %apply (double* ARGOUT_ARRAY1, int DIM1) \  // ARGOUT: output array
        {(double* inv_numpy, int len_inv_numpy)}
-
 
 /* Typically in the end */
 %include "../example/test_gofmm.h"
