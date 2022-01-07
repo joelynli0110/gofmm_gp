@@ -11,18 +11,18 @@ export CXX=g++
 export HMLP_USE_BLAS=true
 
 # ## Make sure MKLROOT is defined in your system. (icc/icpc)
-# export MKLROOT=${MKLROOT}
-export MKLROOT=false
+export MKLROOT=${MKLROOT}
+#export MKLROOT=false
 
 ## Make sure OPENBLASROOT is defined. (gcc/g++)
 # make sure OPENBLASROOT is undefined bc we use libs from NETLIBROOT
 # export OPENBLASROOT=/usr/lib/openblas-base/
-export OPENBLASROOT=false
+export OPENBLASROOT=${OPENBLAS_PATH}
 
 # ## Make sure BLISROOT is defined. (icc/icpc, gcc/g++)
 # We don't need this since we already have libblas + liblapack, namely,
 # NETLIBROOT defined below
-# export BLISROOT=/usr/lib/openblas-base/
+export BLISROOT=${OPENBLAS_PATH}
 
 # ## Make sure NETLIBROOT is defined. (icc/icpc, gcc/g++)
 # export NETLIBROOT=/usr/local/lib/
