@@ -178,13 +178,7 @@ void GofmmTree::InverseOfDenseSpdMatrix(T lambda, double *inverse_matrix,
 
   /* Construct u as an identity matrix. Using 3 loops to enable parallelism  */
   for (size_t i = 0; i < n; i++) {
-    for (size_t j = i + 1; j < n; j++) {
-      u(i, j) = 0;
-    }
-  }
-
-  for (size_t i = 0; i < n; i++) {
-    for (size_t j = 0; j < i; j++) {
+    for (size_t j = 0; j < n; j++) {
       u(i, j) = 0;
     }
   }
