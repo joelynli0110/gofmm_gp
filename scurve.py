@@ -23,7 +23,7 @@ number_of_samples = 2048
 number_of_samples_to_plot = 1024
 idx_plot = np.random.permutation(number_of_samples)[0:number_of_samples_to_plot]
 # generate point cloud
-X, X_color = make_s_curve(number_of_samples, random_state, noise=0)
+X, X_color = make_s_curve(number_of_samples, random_state=42, noise=0)
 
 X_pcm = pfold.PCManifold(X, 
                         kernel=pfold.DmapKernelFixed(internal_kernel=pfold.GaussianKernel(epsilon=0.7305584457602416), is_stochastic=True, alpha=1, symmetrize_kernel=True),
@@ -67,7 +67,7 @@ kernel_matrix = kernel_matrix.astype("float32")
 weights = np.ones((problem_size, num_rhs))      
 
 
-kernel_matrix_OP = FullMatrix( executable, problem_size, max_leaf_node_size,
+kernel_matrix_OP = full_matrix.FullMatrix( executable, problem_size, max_leaf_node_size,
                             num_of_neighbors, max_off_diagonal_ranks, num_rhs, user_tolerance, computation_budget,
                             distance_type, matrix_type, kernel_type, kernel_matrix, weights, dtype=np.float32 )
 
