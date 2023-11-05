@@ -72,7 +72,7 @@ import torch
 model = Sequential(
     Conv2d(kernel_size=2),
     ReLU(),
-    # Conv2d(kernel_size=2),
+    # Conv2d(kernel_size=3,stride=2),
     # ReLU(),
     Conv2d(kernel_size=2,padding=0),  # equivalent to a dense layer
 )
@@ -90,7 +90,7 @@ kernel_matrix_OP = FullMatrix(executable, problem_size, max_leaf_node_size,
                                        	distance_type, matrix_type, kernel_type, K, weights, dtype=np.float32)
 
 
-# ------------------ Linear solving --------------------------------------- #
+# ------------------ Linear solving ------------------------------------------------------------------- #
 np.random.seed(random_state) # fix the generated random values
 b = np.random.rand(problem_size) # randomly generate a tensor for linear solving
 b_tensor = torch.from_numpy(b).to(torch.float64)
@@ -115,6 +115,6 @@ print("Solutions of cnn_gp:", solutions_all)
 print('\n')
 print("Solutions of cnn_gp with gofmm:", solutions_large)
 solution_errors = solutions_all - solutions_large
-print("Frobenius norm Error:", np.linalg.norm(solution_errors, 'fro')) # calculate the frobenius norm error
+print("Frobenius norm Error:", np.linalg.norm(solution_errors.reshape(1,-1),'fro')) # calculate the frobenius norm error
 # print( "Norm solution error: ", np.linalg.norm( solution_errors ) / np.sqrt(problem_size))
-# --------------------------------------------------------------------------------- #
+# --------------------------------------------------------------------------------------------------------- #
