@@ -8,11 +8,6 @@ import sys
 sys.path.insert(1, '../python')
 
 
-# NOTE: make sure "path/to/datafold" is in sys.path or PYTHONPATH if not ,!installed
-import datafold.dynfold as dfold
-import datafold.pcfold as pfold
-from datafold.utils.plot import plot_pairwise_eigenvector
-
 random_state = 42
 
 class FullMatrix( LinearOperator ):
@@ -72,7 +67,7 @@ matrix_type = "dense"
 kernel_type = "gaussian"
 rng = np.random.default_rng( random_state )
 
-# Generate kernel matrix from cnn_gp
+# ------- Generate kernel matrix from cnn_gp ------------- #
 from cnn_gp.kernels import Sequential, Conv2d, ReLU
 import torch
 
@@ -86,24 +81,28 @@ model = Sequential(
 
 X = torch.randn(problem_size, 3, 2, 2) # batch 1: (bs, c, h, w)
 Kxx = model(X, X, same=True) 
-K = Kxx.to(torch.float64).numpy()
-                                        
+Kxx = Kxx.to(torch.float64)
+K = Kxx.numpy()
+# ---------------------------------------------------------- #
+                                      
 # Instantiation of FullMatrix   
 weights = np.ones((problem_size, num_rhs))                                      
 kernel_matrix_OP = FullMatrix(executable, problem_size, max_leaf_node_size,
                                         num_of_neighbors, max_off_diagonal_ranks, num_rhs, user_tolerance, computation_budget,
                                        	distance_type, matrix_type, kernel_type, K, weights, dtype=np.float32 )
 
-n_eigenpairs = 5
-solver_kwargs = {
-    "k": n_eigenpairs,
-    "which": "LM",
-    "v0": np.ones(problem_size),
-    "tol": 1e-6,
-}
+# n_eigenpairs = 5
+# solver_kwargs = {
+#     "k": n_eigenpairs,
+#     "which": "LM",
+#     "v0": np.ones(problem_size),
+#     "tol": 1e-6,
+# } -> does not need for linear solving
 
-np.random.seed(42) # fix the generated random values
-b = np.random.rand(problem_size)
+
+# ------------------ Linear solving --------------------------------------- #
+np.random.seed(random_state) # fix the generated random values
+b = np.random.rand(problem_size) # randomly generate a tensor for linear solving
 b_tensor = torch.from_numpy(b).to(torch.float64)
 
 # https://github.com/cambridge-mlg/cnn-gp/blob/c9260e6cf40e61d2e5b863bbdae32b46e52bd822/exp_mnist_resnet/classify_gp.py#L17
@@ -120,11 +119,12 @@ def solve_system(Kxx, Y):
     return torch.from_numpy(A)
 
 
-solutions_all = solve_system(Kxx.cpu(), b_tensor)
-solutions_large = scipy.linalg.solve(kernel_matrix_OP * np.identity(problem_size),b)
-print("Solutions of scipy:", solutions_all)
+solutions_all = solve_system(Kxx, b_tensor) # Solution of cnn_gp
+solutions_large = scipy.linalg.solve(kernel_matrix_OP * np.identity(problem_size),b) # Solution of cnn_gp with gofmm
+print("Solutions of cnn_gp:", solutions_all)
 print('\n')
-print("Solutions of gofmm:", solutions_large)
+print("Solutions of cnn_gp with gofmm:", solutions_large)
 solution_errors = solutions_all - solutions_large
-print("Frobenius norm Error:", np.linalg.norm(solution_errors, 'fro'))
+print("Frobenius norm Error:", np.linalg.norm(solution_errors, 'fro')) # calculate the frobenius norm error
 # print( "Norm solution error: ", np.linalg.norm( solution_errors ) / np.sqrt(problem_size))
+# --------------------------------------------------------------------------------- #
