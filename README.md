@@ -29,7 +29,7 @@ n2 = Sequential(
 <table>
   <tr>
     <th>CNN Architecture</th>
-    <th> Input dimension <br> C * H * W</th>
+    <th> Input dimension <br> (C $\times$ H $\times$ W) </th>
     <th>Problem Size</th>
     <th>Norm Error</th>
     <th>Duration</th>
