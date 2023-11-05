@@ -1,7 +1,5 @@
-import matplotlib.pyplot as plt
 import numpy as np
 import scipy.sparse.linalg
-from scipy.linalg import eig, eigh
 from scipy.sparse.linalg import LinearOperator
 from build import tools
 import sys
@@ -89,15 +87,7 @@ K = Kxx.numpy()
 weights = np.ones((problem_size, num_rhs))                                      
 kernel_matrix_OP = FullMatrix(executable, problem_size, max_leaf_node_size,
                                         num_of_neighbors, max_off_diagonal_ranks, num_rhs, user_tolerance, computation_budget,
-                                       	distance_type, matrix_type, kernel_type, K, weights, dtype=np.float32 )
-
-# n_eigenpairs = 5
-# solver_kwargs = {
-#     "k": n_eigenpairs,
-#     "which": "LM",
-#     "v0": np.ones(problem_size),
-#     "tol": 1e-6,
-# } -> does not need for linear solving
+                                       	distance_type, matrix_type, kernel_type, K, weights, dtype=np.float32)
 
 
 # ------------------ Linear solving --------------------------------------- #
