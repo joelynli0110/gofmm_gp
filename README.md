@@ -1,6 +1,10 @@
-# Results
+## Implementation
 
-## Linear Solving of GOFMM with cnn_gp
+[test_cnngp.py](https://github.com/joelynli0110/gofmm_gp/blob/dev/test_cnngp.py)
+
+## Results
+
+### Linear Solving of GOFMM with cnn_gp
 
 #### CNN Architecture
 
