@@ -1,10 +1,10 @@
 # Results
 
-## Linear Solving
+## Linear Solving of GOFMM with cnn_gp
 
 #### CNN Architecture
 
-* 3-layer CNN
+* 3-layer CNN $n_1$
 ```
 n1 = Sequential(
     Conv2d(kernel_size=3),
@@ -15,7 +15,7 @@ n1 = Sequential(
 )
 ```
 
-* 2-layer CNN
+* 2-layer CNN $n_2$
 ```
 n2 = Sequential(
     Conv2d(kernel_size=2),
@@ -23,8 +23,6 @@ n2 = Sequential(
     Conv2d(kernel_size=2, padding=0)
 )
 ```
-
-
 
 <table>
   <tr>
@@ -35,7 +33,7 @@ n2 = Sequential(
     <th>Duration</th>
   </tr>
   <tr>
-    <td rowspan="4">n1</td>
+    <td rowspan="4">$n_1$</td>
     <td rowspan="4">$3 \times 14 \times 14$</td>
     <td>512</td>
     <td>$2.86 \times10^{-1}$</td>
