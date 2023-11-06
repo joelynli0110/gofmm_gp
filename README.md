@@ -88,7 +88,7 @@ n3 = Sequential(
   <tr>
   </tr>
     <td rowspan="5">$n_3$</td>
-    <td rowspan="5">$3 \times 4 \times 4$</td>
+    <td rowspan="5">$3 \times 2 \times 2$</td>
     <td>512</td>
     <td></td>
     <td></td>
