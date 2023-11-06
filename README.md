@@ -78,8 +78,8 @@ n3 = Sequential(
   </tr>
   <tr>
     <td>2048</td>
-    <td></td>
-    <td></td>
+    <td>$2.3563 \times10^{4}$</td>
+    <td>00:18:23</td>
   </tr>
     
 </table>
