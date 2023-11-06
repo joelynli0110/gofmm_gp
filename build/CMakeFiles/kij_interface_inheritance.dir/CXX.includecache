@@ -1,4 +1,4 @@
-#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
 
 #IncludeRegexScan: ^.*$
 
@@ -456,7 +456,7 @@ base/runtime.hpp
 base/hmlp_mpi.hpp
 -
 
-/home/getianyi/Documents/Master/Fall_2020/MasterThesis/hmlp/hmlp-1/example/kij_interface_inheritance.cpp
+/workspace/gofmm/example/kij_interface_inheritance.cpp
 gofmm.hpp
 -
 containers/VirtualMatrix.hpp

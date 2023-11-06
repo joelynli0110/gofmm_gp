@@ -1,4 +1,4 @@
-#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
 
 #IncludeRegexScan: ^.*$
 
@@ -298,7 +298,7 @@ cusparse_v2.h
 thrust/pair.h
 -
 
-/home/getianyi/Documents/Master/Fall_2020/MasterThesis/hmlp/hmlp-1/example/distributed_matrix.cpp
+/workspace/gofmm/example/distributed_matrix.cpp
 containers/SPDMatrix.hpp
 -
 containers/KernelMatrix.hpp

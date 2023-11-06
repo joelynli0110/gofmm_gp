@@ -1,8 +1,8 @@
-# Install script for directory: /home/getianyi/Documents/Master/Fall_2020/MasterThesis/hmlp/hmlp-1/deps/googletest/googlemock
+# Install script for directory: /workspace/gofmm/deps/googletest/googlemock
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/getianyi/Documents/Master/Fall_2020/MasterThesis/hmlp/hmlp-1/build")
+  set(CMAKE_INSTALL_PREFIX "/workspace/gofmm/build")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -32,21 +32,26 @@ if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
   set(CMAKE_INSTALL_SO_NO_EXE "1")
 endif()
 
-if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "/home/getianyi/Documents/Master/Fall_2020/MasterThesis/hmlp/hmlp-1/build/deps/googletest/googlemock/libgmock.a")
+# Is this installation the result of a crosscompile?
+if(NOT DEFINED CMAKE_CROSSCOMPILING)
+  set(CMAKE_CROSSCOMPILING "FALSE")
 endif()
 
-if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "/home/getianyi/Documents/Master/Fall_2020/MasterThesis/hmlp/hmlp-1/build/deps/googletest/googlemock/libgmock_main.a")
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "/workspace/gofmm/build/deps/googletest/googlemock/libgmock.a")
 endif()
 
-if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/home/getianyi/Documents/Master/Fall_2020/MasterThesis/hmlp/hmlp-1/deps/googletest/googlemock/include/gmock")
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "/workspace/gofmm/build/deps/googletest/googlemock/libgmock_main.a")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/workspace/gofmm/deps/googletest/googlemock/include/gmock")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/getianyi/Documents/Master/Fall_2020/MasterThesis/hmlp/hmlp-1/build/deps/googletest/googlemock/gtest/cmake_install.cmake")
+  include("/workspace/gofmm/build/deps/googletest/googlemock/gtest/cmake_install.cmake")
 
 endif()
 

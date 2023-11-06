@@ -1,4 +1,4 @@
-#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
 
 #IncludeRegexScan: ^.*$
 
@@ -496,7 +496,7 @@ base/runtime.hpp
 base/hmlp_mpi.hpp
 -
 
-/home/getianyi/Documents/Master/Fall_2020/MasterThesis/hmlp/hmlp-1/artifact/sc18gofmm/artifact_sc18gofmm.cpp
+/workspace/gofmm/artifact/sc18gofmm/artifact_sc18gofmm.cpp
 gofmm_mpi.hpp
 -
 containers/SPDMatrix.hpp
