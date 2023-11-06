@@ -65,8 +65,8 @@ n3 = Sequential(
     <td>00:19:21</td>
   </tr>
   <tr>
-    <td rowspan="4">$n_2$</td>
-    <td rowspan="4">$3 \times 6 \times 6$</td>
+    <td rowspan="5">$n_2$</td>
+    <td rowspan="5">$3 \times 6 \times 6$</td>
     <td>512</td>
     <td>$8.22 \times10^{-1}$</td>
     <td>00:00:24</td>
@@ -85,6 +85,13 @@ n3 = Sequential(
     <td>4096</td>
     <td>$6.235 \times10^{3}$</td>
     <td>01:27:40</td>
+  <tr>
+  </tr>
+    <td rowspan="5">$n_3$</td>
+    <td rowspan="5">$3 \times 4 \times 4$</td>
+    <td>512</td>
+    <td></td>
+    <td></td>
   </tr>
   <tr>
     <td>8192</td>
