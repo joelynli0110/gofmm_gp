@@ -68,6 +68,16 @@ n3 = Sequential(
     <td rowspan="3">$n_2$</td>
     <td rowspan="3">$3 \times 6 \times 6$</td>
     <td>512</td>
+    <td>$8.22 \times10^{-1}$</td>
+    <td>00:00:24</td>
+  </tr>
+  <tr>
+    <td>1024</td>
+    <td>$1.04 \times10^{2}$</td>
+    <td>00:02:52</td>
+  </tr>
+  <tr>
+    <td>2048</td>
     <td></td>
     <td></td>
   </tr>
