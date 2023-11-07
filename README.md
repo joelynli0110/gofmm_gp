@@ -87,8 +87,8 @@ n3 = Sequential(
     <td>01:27:40</td>
   <tr>
   </tr>
-    <td rowspan="5">$n_3$</td>
-    <td rowspan="5">$3 \times 2 \times 2$</td>
+    <td rowspan="6">$n_3$</td>
+    <td rowspan="6">$3 \times 2 \times 2$</td>
     <td>512</td>
     <td>$9.6959 \times10^{4}$</td>
     <td> 01:28:30</td>
