@@ -90,13 +90,33 @@ n3 = Sequential(
     <td rowspan="5">$n_3$</td>
     <td rowspan="5">$3 \times 2 \times 2$</td>
     <td>512</td>
-    <td></td>
-    <td></td>
+    <td>$9.6959 \times10^{4}$</td>
+    <td> 01:28:30</td>
+  </tr>
+  </tr>
+    <td>1024</td>
+    <td>$1.52447 \times10^{5}$</td>
+    <td> 01:28:30</td>
+  </tr>
+  </tr>
+    <td>2048</td>
+    <td>$6.4758 \times10^{4}$</td>
+    <td> 00:18:21</td>
+  </tr>
+  </tr>
+    <td>4096</td>
+    <td>$6.4897 \times10^{4}$</td>
+    <td> 01:27:18</td>
   </tr>
   <tr>
     <td>8192</td>
     <td>$2.9404 \times10^{5}$</td>
     <td>06:02:19</td>
+  </tr>
+  <tr>
+    <td>16384</td>
+    <td>$$</td>
+    <td></td>
   </tr>
     
 </table>
