@@ -121,16 +121,41 @@ n3 = Sequential(
 </table>
 
 ### Linear Solving of GOFMM with cnn_gp on MNIST
+```var_bias = 7.86, var_weight = 2.79```
+```
+n5 = Sequential(
+    Conv2d(kernel_size=3, padding="same", var_weight=var_weight * 7**2, var_bias=var_bias),
+    ReLU(),
+    Conv2d(kernel_size=28, padding=0, var_weight=var_weight,var_bias=var_bias)
+)
+```
+
+```
+n6 = Sequential(
+    Conv2d(kernel_size=3, padding="same", var_weight=var_weight * 7**2, var_bias=var_bias),
+    ReLU(),
+    Conv2d(kernel_size=14, padding=0, var_weight=var_weight,var_bias=var_bias)
+)
+```
+
+```
+n7 = Sequential(
+    Conv2d(kernel_size=3, padding="same", var_weight=var_weight * 7**2, var_bias=var_bias),
+    ReLU(),
+    Conv2d(kernel_size=7, padding=0, var_weight=var_weight,var_bias=var_bias)
+)
+```
+
+
 <table>
   <tr>
     <td colspan="2", rowspan="2"> </td>
-    <th colspan="7"> CNN Architecture</th>
+    <th colspan="6"> CNN Architecture</th>
   </tr>
   <tr>
     <td> $n_1$ </td>
     <td> $n_2$ </td>
     <td> $n_3$ </td>
-    <td> $n_4$ </td>
     <td> $n_5$ </td>
     <td> $n_6$ </td>
     <td> $n_7$ </td>
@@ -142,16 +167,37 @@ n3 = Sequential(
     <td>512</td>
     <td>$9.627 \times 10^{-8}$</td>
     <td>$7.508 \times 10^{-6}$</td>
-    
+    <td></td>
+    <td>$3.105 \times 10^{-11}$</td>
+    <td> </td>
+    <td> </td>
   </tr>
   <tr>
     <td>1024</td>
+    <td>$9.960 \times 10^{0}$</td>
+    <td>$4.178 \times 10^{2}$</td>
+    <td> singular </td>
+    <td>$2.809 \times 10^{-3}$</td>
+    <td> </td>
+    <td> </td>
   </tr>
   <tr>
     <td>2048</td>
+      <td> </td>
+    <td> </td>
+      <td> </td>
+    <td> </td>
+    <td> $5.089 \times 10^3$ </td>
+    <td>$1.163 \times 10^4$ </td>
   </tr>
   <tr>
     <td>4096</td>
+    <td> </td>
+    <td> </td>
+      <td> </td>
+    <td> </td>
+      <td> </td>
+    <td> $3.278 \times 10^5$ </td>
   </tr>
   <tr>
     <td>8192</td>
