@@ -41,7 +41,7 @@ n3 = Sequential(
 
 <table>
   <tr>
-    <th>CNN Architecture</th>
+    <th> CNN Architecture </th>
     <th> Input dimension <br> (C $\times$ H $\times$ W) </th>
     <th>Problem Size</th>
     <th>Norm Error</th>
@@ -123,9 +123,39 @@ n3 = Sequential(
 ### Linear Solving of GOFMM with cnn_gp on MNIST
 <table>
   <tr>
-    <th> <th>
-    <th>CNN Architecture</th>
-    <th>Problem Size</th>
+    <td colspan="2", rowspan="2"> </td>
+    <th colspan="7"> CNN Architecture</th>
   </tr>
-
-
+  <tr>
+    <td> $n_1$ </td>
+    <td> $n_2$ </td>
+    <td> $n_3$ </td>
+    <td> $n_4$ </td>
+    <td> $n_5$ </td>
+    <td> $n_6$ </td>
+    <td> $n_7$ </td>
+  </tr>
+  <tr>
+    <th rowspan="8"> Problem size </th>
+  </tr>
+  <tr>
+    <td>512</td>
+    <td>$9.627 \times 10^{-8}$</td>
+    <td>$7.508 \times 10^{-6}$</td>
+    
+  </tr>
+  <tr>
+    <td>1024</td>
+  </tr>
+  <tr>
+    <td>2048</td>
+  </tr>
+  <tr>
+    <td>4096</td>
+  </tr>
+  <tr>
+    <td>8192</td>
+  </tr>
+  <tr>
+    <td>16384</td>
+  </tr>
