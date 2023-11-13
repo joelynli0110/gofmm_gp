@@ -118,5 +118,14 @@ n3 = Sequential(
     <td>$$</td>
     <td></td>
   </tr>
-    
 </table>
+
+### Linear Solving of GOFMM with cnn_gp on MNIST
+<table>
+  <tr>
+    <th> <th>
+    <th>CNN Architecture</th>
+    <th>Problem Size</th>
+  </tr>
+
+
