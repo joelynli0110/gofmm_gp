@@ -201,6 +201,10 @@ n7 = Sequential(
   </tr>
   <tr>
     <td>8192</td>
+      <td></td>
+     <td></td>
+      <td> singular </td>
+      <td></td>
   </tr>
   <tr>
     <td>16384</td>
