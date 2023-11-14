@@ -115,7 +115,7 @@ n3 = Sequential(
   </tr>
   <tr>
     <td>16384</td>
-    <td>$$</td>
+    <td>$3.558 \times 10^5$</td>
     <td></td>
   </tr>
 </table>
@@ -179,24 +179,24 @@ n7 = Sequential(
     <td> singular </td>
     <td>$2.809 \times 10^{-3}$</td>
     <td> </td>
-    <td> </td>
+    <td> $6.075 \times 10^{-1}$ </td>
   </tr>
   <tr>
     <td>2048</td>
-      <td> </td>
-    <td> </td>
-      <td> </td>
-    <td> </td>
+      <td> $1.842 \times 10^7$ </td>
+    <td> singular </td>
+      <td> singular </td>
+    <td> - </td>
     <td> $5.089 \times 10^3$ </td>
     <td>$1.163 \times 10^4$ </td>
   </tr>
   <tr>
     <td>4096</td>
-    <td> </td>
-    <td> </td>
-      <td> </td>
-    <td> </td>
-      <td> </td>
+    <td> - </td>
+    <td> singular</td>
+      <td> singular </td>
+    <td> - </td>
+      <td> - </td>
     <td> $3.278 \times 10^5$ </td>
   </tr>
   <tr>
