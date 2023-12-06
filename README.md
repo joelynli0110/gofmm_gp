@@ -1,3 +1,7 @@
+# Efficient and Scalable Linear Solver for Kernel Matrix Approximations Using Hierarchical Decomposition
+
+This is the repo for the bachelor thesis titled "Efficient and Scalable Linear Solver for Kernel Matrix Approximations Using Hierarchical Decomposition". 
+
 ## Implementation
 
 [test_cnngp.py](https://github.com/joelynli0110/gofmm_gp/blob/dev/test_cnngp.py)
