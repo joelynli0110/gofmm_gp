@@ -1,6 +1,6 @@
 # Efficient and Scalable Linear Solver for Kernel Matrix Approximations Using Hierarchical Decomposition
 
-This is the repo for the bachelor thesis titled "Efficient and Scalable Linear Solver for Kernel Matrix Approximations Using Hierarchical Decomposition". 
+This is the repo for the implementaion of the bachelor thesis "Efficient and Scalable Linear Solver for Kernel Matrix Approximations Using Hierchical Decomposition". This project aims to build up a linear solver of [GOFMM](https://arxiv.org/abs/1707.00164) with [CNN-GPs](https://arxiv.org/abs/1808.05587). You can find the full thesis document [here](https://mediatum.ub.tum.de/node?id=1736445&change_language=en).
 
 ## Implementation
 
@@ -120,7 +120,7 @@ n3 = Sequential(
   <tr>
     <td>16384</td>
     <td>$3.558 \times 10^5$</td>
-    <td></td>
+    <td> - </td>
   </tr>
 </table>
 
@@ -171,10 +171,10 @@ n7 = Sequential(
     <td>512</td>
     <td>$9.627 \times 10^{-8}$</td>
     <td>$7.508 \times 10^{-6}$</td>
-    <td></td>
+    <td> - </td>
     <td>$3.105 \times 10^{-11}$</td>
-    <td> </td>
-    <td> </td>
+    <td> - </td>
+    <td> - </td>
   </tr>
   <tr>
     <td>1024</td>
@@ -182,7 +182,7 @@ n7 = Sequential(
     <td>$4.178 \times 10^{2}$</td>
     <td> singular </td>
     <td>$2.809 \times 10^{-3}$</td>
-    <td> </td>
+    <td> - </td>
     <td> $6.075 \times 10^{-1}$ </td>
   </tr>
   <tr>
@@ -205,11 +205,19 @@ n7 = Sequential(
   </tr>
   <tr>
     <td>8192</td>
-      <td></td>
-     <td></td>
+      <td> - </td>
+     <td> - </td>
       <td> singular </td>
-      <td></td>
+      <td> - </td>
+      <td> - </td>
+      <td> - </td>
   </tr>
   <tr>
     <td>16384</td>
+      <td> - </td>
+      <td> - </td>
+      <td> - </td>
+      <td> - </td>
+      <td> - </td>
+      <td> - </td>
   </tr>
